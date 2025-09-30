@@ -1,9 +1,9 @@
 from datetime import datetime, timedelta, timezone
 from typing import Optional, Tuple
 from motor.motor_asyncio import AsyncIOMotorDatabase
-from ..core.security import generate_otp, hash_otp, verify_otp_hash
-from ..core.config import settings
-from .mock_providers import email_provider, sms_provider
+from core.security import generate_otp, hash_otp, verify_otp_hash
+from core.config import settings
+from services.mock_providers import email_provider, sms_provider
 import logging
 
 logger = logging.getLogger(__name__)
