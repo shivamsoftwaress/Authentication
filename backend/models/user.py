@@ -6,7 +6,7 @@ class UserCreate(BaseModel):
     username: str = Field(..., min_length=3, max_length=50)
     email: Optional[EmailStr] = None
     phone: Optional[str] = Field(None, pattern=r'^\+?[1-9]\d{1,14}$')
-    password: str = Field(..., min_length=6)
+    password: str = Field(..., min_length=6, max_length=72)
     role: str = Field(default="customer")  # customer or admin
 
 class UserInDB(BaseModel):
