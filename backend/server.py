@@ -142,8 +142,6 @@ async def signup(user_data: UserCreate, request: Request):
         now = datetime.now(timezone.utc).isoformat()
         user_doc = {
             "username": user_data.username,
-            "email": user_data.email,
-            "phone": user_data.phone,
             "password_hash": password_hash,
             "role": user_data.role,
             "is_active": True,
@@ -151,6 +149,12 @@ async def signup(user_data: UserCreate, request: Request):
             "created_at": now,
             "updated_at": now
         }
+        
+        # Only add email and phone if provided (avoid null values in sparse indexes)
+        if user_data.email:
+            user_doc["email"] = user_data.email
+        if user_data.phone:
+            user_doc["phone"] = user_data.phone
         
         # Insert user
         result = await db.users.insert_one(user_doc)
