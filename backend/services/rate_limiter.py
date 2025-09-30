@@ -1,7 +1,7 @@
 import redis.asyncio as redis
 from datetime import datetime, timedelta
 from typing import Tuple
-from ..core.config import settings
+from core.config import settings
 import logging
 
 logger = logging.getLogger(__name__)
